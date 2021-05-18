@@ -32,6 +32,11 @@ public class LoggingPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         ExitButton = new javax.swing.JButton();
+        LoginLabel = new javax.swing.JLabel();
+        PasswordLabel = new javax.swing.JLabel();
+        LoginField = new javax.swing.JTextField();
+        PasswordField = new javax.swing.JPasswordField();
+        LogInButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 204, 204));
 
@@ -57,13 +62,70 @@ public class LoggingPanel extends javax.swing.JPanel {
             }
         });
 
+        LoginLabel.setBackground(new java.awt.Color(51, 51, 51));
+        LoginLabel.setForeground(new java.awt.Color(255, 255, 255));
+        LoginLabel.setText("Login");
+        LoginLabel.setFocusable(false);
+
+        PasswordLabel.setBackground(new java.awt.Color(51, 51, 51));
+        PasswordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordLabel.setText("Password");
+        PasswordLabel.setFocusable(false);
+
+        LoginField.setBackground(new java.awt.Color(51, 51, 51));
+        LoginField.setForeground(new java.awt.Color(255, 255, 255));
+        LoginField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LoginField.setCaretColor(new java.awt.Color(255, 255, 255));
+        LoginField.setPreferredSize(new java.awt.Dimension(100, 23));
+
+        PasswordField.setBackground(new java.awt.Color(51, 51, 51));
+        PasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        PasswordField.setCaretColor(new java.awt.Color(255, 255, 255));
+        PasswordField.setPreferredSize(new java.awt.Dimension(100, 23));
+
+        LogInButton.setBackground(new java.awt.Color(51, 51, 51));
+        LogInButton.setForeground(new java.awt.Color(255, 255, 255));
+        LogInButton.setText("Log In");
+        LogInButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        LogInButton.setFocusPainted(false);
+        LogInButton.setFocusable(false);
+        LogInButton.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        LogInButton.setPreferredSize(new java.awt.Dimension(188, 25));
+        LogInButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LogInButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LogInButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LogInButtonMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(334, Short.MAX_VALUE)
-                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(334, Short.MAX_VALUE)
+                        .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(PasswordLabel)
+                                    .addComponent(LoginLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -71,7 +133,17 @@ public class LoggingPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoginLabel)
+                    .addComponent(LoginField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PasswordLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -89,8 +161,32 @@ public class LoggingPanel extends javax.swing.JPanel {
         repaint();
     }//GEN-LAST:event_ExitButtonMouseExited
 
+    private void LogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseClicked
+        if (LoginField.getText().charAt(0) == 's') {
+            myFrame.getContentPane().removeAll();
+            myFrame.getContentPane().add(new LoggingPanel(myFrame));
+            myFrame.setVisible(true);
+        }
+            
+    }//GEN-LAST:event_LogInButtonMouseClicked
+
+    private void LogInButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseEntered
+        LogInButton.setBackground(new java.awt.Color(92, 92, 92));
+        repaint();
+    }//GEN-LAST:event_LogInButtonMouseEntered
+
+    private void LogInButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseExited
+        LogInButton.setBackground(new java.awt.Color(51, 51, 51));
+        repaint();
+    }//GEN-LAST:event_LogInButtonMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ExitButton;
+    private javax.swing.JButton LogInButton;
+    private javax.swing.JTextField LoginField;
+    private javax.swing.JLabel LoginLabel;
+    private javax.swing.JPasswordField PasswordField;
+    private javax.swing.JLabel PasswordLabel;
     // End of variables declaration//GEN-END:variables
 }
