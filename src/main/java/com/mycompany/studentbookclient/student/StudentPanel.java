@@ -15,6 +15,9 @@ public class StudentPanel extends javax.swing.JPanel {
         this.myFrame = myFrame;
         initComponents();
         initMenu();
+        myFrame.getContentPane().removeAll();
+        myFrame.getContentPane().add(new StudentProfilePanel(myFrame));
+        myFrame.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,12 +33,17 @@ public class StudentPanel extends javax.swing.JPanel {
         MenuBar.setBackground(new java.awt.Color(51, 51, 51));
         MenuBar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         MenuBar.setForeground(new java.awt.Color(255, 255, 255));
+        MenuBar.setFocusable(false);
 
         Profile.setBackground(new java.awt.Color(51, 51, 51));
         Profile.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Profile.setForeground(new java.awt.Color(255, 255, 255));
         Profile.setText("Profile");
+        Profile.setFocusable(false);
         Profile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ProfileMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ProfileMouseEntered(evt);
             }
@@ -49,7 +57,11 @@ public class StudentPanel extends javax.swing.JPanel {
         MyGrades.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MyGrades.setForeground(new java.awt.Color(255, 255, 255));
         MyGrades.setText("My grades");
+        MyGrades.setFocusable(false);
         MyGrades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MyGradesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 MyGradesMouseEntered(evt);
             }
@@ -63,7 +75,11 @@ public class StudentPanel extends javax.swing.JPanel {
         SearchForGrade.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SearchForGrade.setForeground(new java.awt.Color(255, 255, 255));
         SearchForGrade.setText("Search for grade");
+        SearchForGrade.setFocusable(false);
         SearchForGrade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SearchForGradeMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SearchForGradeMouseEntered(evt);
             }
@@ -77,6 +93,7 @@ public class StudentPanel extends javax.swing.JPanel {
         Logout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Logout.setForeground(new java.awt.Color(255, 255, 255));
         Logout.setText("Logout");
+        Logout.setFocusable(false);
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogoutMouseClicked(evt);
@@ -143,6 +160,24 @@ public class StudentPanel extends javax.swing.JPanel {
         myFrame.getContentPane().add(new LoggingPanel(myFrame));
         myFrame.setVisible(true);
     }//GEN-LAST:event_LogoutMouseClicked
+
+    private void ProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileMouseClicked
+        myFrame.getContentPane().removeAll();
+        myFrame.getContentPane().add(new StudentProfilePanel(myFrame));
+        myFrame.setVisible(true);
+    }//GEN-LAST:event_ProfileMouseClicked
+
+    private void MyGradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyGradesMouseClicked
+        myFrame.getContentPane().removeAll();
+        myFrame.getContentPane().add(new StudentGradesPanel(myFrame));
+        myFrame.setVisible(true);
+    }//GEN-LAST:event_MyGradesMouseClicked
+
+    private void SearchForGradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchForGradeMouseClicked
+        myFrame.getContentPane().removeAll();
+        myFrame.getContentPane().add(new StudentGradeFromPanel(myFrame));
+        myFrame.setVisible(true);
+    }//GEN-LAST:event_SearchForGradeMouseClicked
 
     private void initMenu() {
         myFrame.setJMenuBar(MenuBar);
