@@ -150,6 +150,10 @@
           <Dimension value="[100, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="LoginFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="LoginFieldFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="PasswordField">
       <Properties>
@@ -171,6 +175,10 @@
           <Dimension value="[100, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PasswordFieldFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PasswordFieldFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="LogInButton">
       <Properties>
