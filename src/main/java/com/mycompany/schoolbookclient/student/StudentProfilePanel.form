@@ -58,7 +58,6 @@
           <Color blue="be" green="be" red="be" type="rgb"/>
         </Property>
         <Property name="rows" type="int" value="8"/>
-        <Property name="text" type="java.lang.String" value="Id: &#xa;First name: &#xa;Last_name: &#xa;Birth_date: &#xa;Class_number: &#xa;City:&#xa;Address:&#xa;Post code:"/>
         <Property name="focusable" type="boolean" value="false"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[5, 5, 5, 5]"/>

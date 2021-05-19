@@ -2,6 +2,9 @@ package com.mycompany.schoolbookclient.student;
 
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
+import com.mycompany.schoolbookclient.session.StudentSession;
 import java.io.IOException;
 
 /**
@@ -14,9 +17,10 @@ public class StudentProfilePanel extends javax.swing.JPanel {
     public StudentProfilePanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
-        //MainFrame.client.makeRequest("STU;GET;1");
-        PersonalData.append(MainFrame.client.makeRequest("STU;GET;1"));
-        //PersonalData.append("STU;GET;1");
+        PersonalData.append(ContentBuilder
+                                .StudentPersonalData(Mapper
+                                .parseJSON(MainFrame.client
+                                .makeRequestGETStudentByID(StudentSession.getId()))));
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +38,6 @@ public class StudentProfilePanel extends javax.swing.JPanel {
         PersonalData.setColumns(120);
         PersonalData.setForeground(new java.awt.Color(190, 190, 190));
         PersonalData.setRows(8);
-        PersonalData.setText("Id: \nFirst name: \nLast_name: \nBirth_date: \nClass_number: \nCity:\nAddress:\nPost code:");
         PersonalData.setFocusable(false);
         PersonalData.setMargin(new java.awt.Insets(5, 5, 5, 5));
 

@@ -1,6 +1,7 @@
 package com.mycompany.schoolbookclient.mainwindow;
 
 import com.mycompany.schoolbookclient.Client;
+import com.mycompany.schoolbookclient.session.Session;
 import java.io.IOException;
 
 /**
@@ -52,4 +53,5 @@ public class MainFrame extends javax.swing.JFrame {
 
     private javax.swing.JPanel panel;
     public static Client client;
+    public static Session session;
 }

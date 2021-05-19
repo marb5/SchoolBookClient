@@ -50,4 +50,9 @@ public class Client extends Thread {
         return buffer.readLine();
     }
     
+    public String makeRequestGETStudentByID(int id) throws IOException {
+        String request = "STU;GET;" + String.valueOf(id);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
 }

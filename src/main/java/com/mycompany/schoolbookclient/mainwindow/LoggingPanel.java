@@ -1,5 +1,7 @@
 package com.mycompany.schoolbookclient.mainwindow;
 
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
+import com.mycompany.schoolbookclient.session.StudentSession;
 import com.mycompany.schoolbookclient.student.StudentPanel;
 import com.mycompany.schoolbookclient.teacher.TeacherPanel;
 import java.awt.Color;
@@ -172,13 +174,19 @@ public class LoggingPanel extends javax.swing.JPanel {
 
     private void LogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseClicked
         if (LoginField.getText().charAt(0) == 's') {
-            myFrame.getContentPane().removeAll();
-            try {
-                myFrame.getContentPane().add(new StudentPanel(myFrame));
-            } catch (IOException ex) {
-                Logger.getLogger(LoggingPanel.class.getName()).log(Level.SEVERE, null, ex);
+            myFrame.session = new StudentSession(LoginField.getText());
+            if(session.isRunning()) {
+                myFrame.getContentPane().removeAll();
+                try {
+                    myFrame.getContentPane().add(new StudentPanel(myFrame));
+                } catch (IOException ex) {
+                    Logger.getLogger(LoggingPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                myFrame.setVisible(true);
             }
-            myFrame.setVisible(true);
+            else {
+                JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else if (LoginField.getText().charAt(0) == 't') {
             myFrame.getContentPane().removeAll();

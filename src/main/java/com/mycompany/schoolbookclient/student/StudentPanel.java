@@ -2,7 +2,6 @@ package com.mycompany.schoolbookclient.student;
 
 import com.mycompany.schoolbookclient.mainwindow.LoggingPanel;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
