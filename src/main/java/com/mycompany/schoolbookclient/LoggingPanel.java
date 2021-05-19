@@ -1,8 +1,10 @@
 package com.mycompany.schoolbookclient;
 
 import com.mycompany.schoolbookclient.student.StudentPanel;
+import com.mycompany.schoolbookclient.teacher.TeacherPanel;
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -170,7 +172,14 @@ public class LoggingPanel extends javax.swing.JPanel {
             myFrame.getContentPane().add(new StudentPanel(myFrame));
             myFrame.setVisible(true);
         }
-            
+        else if (LoginField.getText().charAt(0) == 't') {
+            myFrame.getContentPane().removeAll();
+            myFrame.getContentPane().add(new TeacherPanel(myFrame));
+            myFrame.setVisible(true);
+        }
+        else {
+            JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_LogInButtonMouseClicked
 
     private void LogInButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseEntered
