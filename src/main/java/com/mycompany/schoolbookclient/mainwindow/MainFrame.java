@@ -1,21 +1,21 @@
-package com.mycompany.schoolbookclient;
+package com.mycompany.schoolbookclient.mainwindow;
 
+import com.mycompany.schoolbookclient.Client;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author marcin
  */
 public class MainFrame extends javax.swing.JFrame {
-    public MainFrame() {
+    
+    public MainFrame(Client client) {
+        this.client = client;
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-
         panel = new LoggingPanel(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -45,15 +45,11 @@ public class MainFrame extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    Client.connectToServer();
-                } catch (IOException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                new MainFrame().setVisible(true);
+                new MainFrame(client).setVisible(true);
             }
         });
     }
 
     private javax.swing.JPanel panel;
+    public static Client client;
 }

@@ -1,7 +1,8 @@
 package com.mycompany.schoolbookclient.student;
 
-import com.mycompany.schoolbookclient.MainFrame;
+import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
+import java.io.IOException;
 
 /**
  *
@@ -10,9 +11,12 @@ import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
 public class StudentProfilePanel extends javax.swing.JPanel {
     MainFrame myFrame;
 
-    public StudentProfilePanel(MainFrame myFrame) {
+    public StudentProfilePanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
+        //MainFrame.client.makeRequest("STU;GET;1");
+        PersonalData.append(MainFrame.client.makeRequest("STU;GET;1"));
+        //PersonalData.append("STU;GET;1");
     }
 
     @SuppressWarnings("unchecked")

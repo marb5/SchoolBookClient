@@ -1,8 +1,11 @@
 package com.mycompany.schoolbookclient.student;
 
-import com.mycompany.schoolbookclient.LoggingPanel;
-import com.mycompany.schoolbookclient.MainFrame;
+import com.mycompany.schoolbookclient.mainwindow.LoggingPanel;
+import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -11,7 +14,7 @@ import java.awt.Color;
 public class StudentPanel extends javax.swing.JPanel {
     MainFrame myFrame;
     
-    public StudentPanel(MainFrame myFrame) {
+    public StudentPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
         initMenu();
@@ -163,7 +166,11 @@ public class StudentPanel extends javax.swing.JPanel {
 
     private void ProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileMouseClicked
         myFrame.getContentPane().removeAll();
-        myFrame.getContentPane().add(new StudentProfilePanel(myFrame));
+        try {
+            myFrame.getContentPane().add(new StudentProfilePanel(myFrame));
+        } catch (IOException ex) {
+            Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         myFrame.setVisible(true);
     }//GEN-LAST:event_ProfileMouseClicked
 

@@ -1,6 +1,6 @@
 package com.mycompany.schoolbookclient.teacher;
 
-import com.mycompany.schoolbookclient.MainFrame;
+import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
 
 /**

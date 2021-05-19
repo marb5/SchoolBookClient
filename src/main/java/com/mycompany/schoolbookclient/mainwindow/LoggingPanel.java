@@ -1,8 +1,11 @@
-package com.mycompany.schoolbookclient;
+package com.mycompany.schoolbookclient.mainwindow;
 
 import com.mycompany.schoolbookclient.student.StudentPanel;
 import com.mycompany.schoolbookclient.teacher.TeacherPanel;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
@@ -156,6 +159,7 @@ public class LoggingPanel extends javax.swing.JPanel {
 
     private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
         myFrame.dispose();
+        System.exit(0);
     }//GEN-LAST:event_ExitButtonMouseClicked
 
     private void ExitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseEntered
@@ -169,7 +173,11 @@ public class LoggingPanel extends javax.swing.JPanel {
     private void LogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseClicked
         if (LoginField.getText().charAt(0) == 's') {
             myFrame.getContentPane().removeAll();
-            myFrame.getContentPane().add(new StudentPanel(myFrame));
+            try {
+                myFrame.getContentPane().add(new StudentPanel(myFrame));
+            } catch (IOException ex) {
+                Logger.getLogger(LoggingPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             myFrame.setVisible(true);
         }
         else if (LoginField.getText().charAt(0) == 't') {

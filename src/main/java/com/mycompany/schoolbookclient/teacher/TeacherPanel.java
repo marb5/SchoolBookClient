@@ -1,7 +1,7 @@
 package com.mycompany.schoolbookclient.teacher;
 
-import com.mycompany.schoolbookclient.LoggingPanel;
-import com.mycompany.schoolbookclient.MainFrame;
+import com.mycompany.schoolbookclient.mainwindow.LoggingPanel;
+import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 
 /**
  *
