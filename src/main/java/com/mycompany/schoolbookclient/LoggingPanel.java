@@ -1,6 +1,6 @@
-package com.mycompany.studentbookclient;
+package com.mycompany.schoolbookclient;
 
-import com.mycompany.studentbookclient.student.StudentPanel;
+import com.mycompany.schoolbookclient.student.StudentPanel;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 

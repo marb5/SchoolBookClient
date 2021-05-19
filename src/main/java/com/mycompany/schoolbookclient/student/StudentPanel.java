@@ -1,7 +1,7 @@
-package com.mycompany.studentbookclient.student;
+package com.mycompany.schoolbookclient.student;
 
-import com.mycompany.studentbookclient.LoggingPanel;
-import com.mycompany.studentbookclient.MainFrame;
+import com.mycompany.schoolbookclient.LoggingPanel;
+import com.mycompany.schoolbookclient.MainFrame;
 import java.awt.Color;
 
 /**

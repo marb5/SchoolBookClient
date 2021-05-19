@@ -1,4 +1,4 @@
-package com.mycompany.studentbookclient;
+package com.mycompany.schoolbookclient;
 
 /**
  *

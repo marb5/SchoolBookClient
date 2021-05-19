@@ -1,6 +1,6 @@
-package com.mycompany.studentbookclient.address;
+package com.mycompany.schoolbookclient.address;
 
-import com.mycompany.studentbookclient.MainFrame;
+import com.mycompany.schoolbookclient.MainFrame;
 
 /**
  *
