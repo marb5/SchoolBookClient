@@ -1,5 +1,9 @@
 package com.mycompany.schoolbookclient;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author marcin
@@ -21,7 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -41,6 +45,11 @@ public class MainFrame extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    Client.connectToServer();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new MainFrame().setVisible(true);
             }
         });
