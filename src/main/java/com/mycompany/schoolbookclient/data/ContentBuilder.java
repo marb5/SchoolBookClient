@@ -85,21 +85,21 @@ public class ContentBuilder {
     }
     
     public static String AddGradeResponse(Map<String, String> map) {
-        if (map.get("Success") == "1")
+        if (map.get("Success").equals("1"))
             return "Grade added correctly\n";
         else
             return "Problem while adding grade\n";
     }
     
     public static String ChangeGradeResponse(Map<String, String> map) {
-        if (map.get("Success") == "1")
+        if (map.get("Success").equals("1"))
             return "Grade changed correctly\n";
         else
             return "Problem while changing grade\n";
     }
     
     public static String DeleteGradeResponse(Map<String, String> map) {
-        if (map.get("Success") == "1")
+        if (map.get("Success").equals("1"))
             return "Grade deleted correctly\n";
         else
             return "Problem while deleting grade\n";
