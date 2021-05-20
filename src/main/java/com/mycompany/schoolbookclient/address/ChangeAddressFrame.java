@@ -261,6 +261,7 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
                                                 .parseJSON(MainFrame.client
                                                         .makeRequestCHANGEStudentAddress(session.getId(), CityField.getText(),
                                                                 StreetField.getText(), PostCodeField.getText())));
+                    JOptionPane.showConfirmDialog(this, message);
                 }
                 else if (session.getClass() == TeacherSession.class) {
                     String message = ContentBuilder
@@ -268,6 +269,7 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
                                                 .parseJSON(MainFrame.client
                                                         .makeRequestCHANGETeacherAddress(session.getId(), CityField.getText(),
                                                                 StreetField.getText(), PostCodeField.getText())));
+                    JOptionPane.showConfirmDialog(this, message);
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
