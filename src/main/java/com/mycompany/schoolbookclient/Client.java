@@ -108,7 +108,7 @@ public class Client extends Thread {
         return buffer.readLine();
     }
     
-    public String makeRequestADDGrade(int myId, int studentId, int subjectId) throws IOException {
+    public String makeRequestDELETEGrade(int myId, int studentId, int subjectId) throws IOException {
         String request = "TEA;DEL;" + String.valueOf(myId) + ";" + String.valueOf(studentId) + ";"
                                     + String.valueOf(subjectId);
         clientPrintOut.println(request);

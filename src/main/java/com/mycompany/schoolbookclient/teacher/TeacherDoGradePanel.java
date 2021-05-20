@@ -1,6 +1,12 @@
 package com.mycompany.schoolbookclient.teacher;
 
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
+import com.mycompany.schoolbookclient.session.TeacherSession;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -100,6 +106,9 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
         AddButton.setFocusable(false);
         AddButton.setPreferredSize(new java.awt.Dimension(90, 25));
         AddButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AddButtonMouseEntered(evt);
             }
@@ -116,6 +125,9 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
         ChangeButton.setFocusable(false);
         ChangeButton.setPreferredSize(new java.awt.Dimension(90, 25));
         ChangeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ChangeButtonMouseEntered(evt);
             }
@@ -132,6 +144,9 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
         DeleteButton.setFocusable(false);
         DeleteButton.setPreferredSize(new java.awt.Dimension(90, 25));
         DeleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DeleteButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 DeleteButtonMouseEntered(evt);
             }
@@ -238,6 +253,59 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
     private void DeleteButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseExited
         DeleteButton.setBackground(new java.awt.Color(51, 51, 51));
     }//GEN-LAST:event_DeleteButtonMouseExited
+
+    private void AddButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddButtonMouseClicked
+        int studentId = Integer.parseInt(StudentIdField.getText());
+        int subjectId = Integer.parseInt(SubjectIdField.getText());
+        int grade = Integer.parseInt(GradeField.getText());
+        try {
+            String message = ContentBuilder
+                                .AddGradeResponse(Mapper
+                                        .parseJSON(MainFrame.client
+                                                .makeRequestADDGrade(session.getId(), studentId,
+                                                        subjectId, grade)));
+                
+        } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_AddButtonMouseClicked
+
+    private void ChangeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeButtonMouseClicked
+        int studentId = Integer.parseInt(StudentIdField.getText());
+        int subjectId = Integer.parseInt(SubjectIdField.getText());
+        int grade = Integer.parseInt(GradeField.getText());
+        try {
+            String message = ContentBuilder
+                                .ChangeGradeResponse(Mapper
+                                        .parseJSON(MainFrame.client
+                                                .makeRequestCHANGEGrade(session.getId(), studentId,
+                                                        subjectId, grade)));
+                
+        } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ChangeButtonMouseClicked
+
+    private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
+        int studentId = Integer.parseInt(StudentIdField.getText());
+        int subjectId = Integer.parseInt(SubjectIdField.getText());
+        try {
+            String message = ContentBuilder
+                                .DeleteGradeResponse(Mapper
+                                        .parseJSON(MainFrame.client
+                                                .makeRequestDELETEGrade(session.getId(), studentId,
+                                                        subjectId)));
+                
+        } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_DeleteButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
