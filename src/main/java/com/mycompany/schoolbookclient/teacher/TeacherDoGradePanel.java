@@ -4,7 +4,6 @@ import com.mycompany.schoolbookclient.data.ContentBuilder;
 import com.mycompany.schoolbookclient.data.Mapper;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
-import com.mycompany.schoolbookclient.session.TeacherSession;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
@@ -264,11 +263,12 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
                                         .parseJSON(MainFrame.client
                                                 .makeRequestADDGrade(session.getId(), studentId,
                                                         subjectId, grade)));
+            JOptionPane.showConfirmDialog(myFrame, message);
                 
         } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AddButtonMouseClicked
 
@@ -282,11 +282,12 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
                                         .parseJSON(MainFrame.client
                                                 .makeRequestCHANGEGrade(session.getId(), studentId,
                                                         subjectId, grade)));
+            JOptionPane.showConfirmDialog(myFrame, message);
                 
         } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_ChangeButtonMouseClicked
 
@@ -299,11 +300,12 @@ public class TeacherDoGradePanel extends javax.swing.JPanel {
                                         .parseJSON(MainFrame.client
                                                 .makeRequestDELETEGrade(session.getId(), studentId,
                                                         subjectId)));
+            JOptionPane.showConfirmDialog(myFrame, message);
                 
         } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Please enter numeric data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_DeleteButtonMouseClicked
 
