@@ -134,7 +134,7 @@ public class StudentGradeFromPanel extends javax.swing.JPanel {
     private void SubjectIdButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubjectIdButtonMouseClicked
         try {
             int subjectId = Integer.parseInt(SubjectIdField.getText());
-            jTextArea1.append(ContentBuilder
+            jTextArea1.setText(ContentBuilder
                                 .StudentGradeFrom(Mapper
                                 .parseJSON(MainFrame.client
                                 .makeRequestGETStudentByIDGradesFrom(session.getId(), subjectId))));

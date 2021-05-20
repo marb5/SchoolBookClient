@@ -16,7 +16,7 @@ public class StudentGradesPanel extends javax.swing.JPanel {
     public StudentGradesPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
-        jTextArea1.append(ContentBuilder
+        jTextArea1.setText(ContentBuilder
                                 .StudentGrades(Mapper
                                 .parseJSONlist(MainFrame.client
                                 .makeRequestGETStudentByIDGrades(session.getId()))));

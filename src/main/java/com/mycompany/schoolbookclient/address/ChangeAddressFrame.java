@@ -6,9 +6,9 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.session.Session;
 import com.mycompany.schoolbookclient.session.StudentSession;
 import com.mycompany.schoolbookclient.session.TeacherSession;
+import com.mycompany.schoolbookclient.student.StudentProfilePanel;
+import com.mycompany.schoolbookclient.teacher.TeacherProfilePanel;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -252,17 +252,31 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseButtonMouseClicked
 
     private void ChangeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeButtonMouseClicked
+        //validation if fields are correctly filled
         if (!CityField.getText().isEmpty() && !StreetField.getText().isEmpty() && 
                 !PostCodeField.getText().isEmpty() && PostCodeField.getText().length() <= 6) {
             try {
+                //if student is logged in
                 if (session.getClass() == StudentSession.class) {
                     String message = ContentBuilder
                                         .ChangeAddressResponse(Mapper
                                                 .parseJSON(MainFrame.client
                                                         .makeRequestCHANGEStudentAddress(session.getId(), CityField.getText(),
                                                                 StreetField.getText(), PostCodeField.getText())));
-                    JOptionPane.showConfirmDialog(this, message);
+                    JOptionPane.showConfirmDialog(this, message, "OK", JOptionPane.NO_OPTION);
+                    parentFrame.setEnabled(true);
+                    dispose();
+                    
+                    //refreshing main frame
+                    parentFrame.getContentPane().removeAll();
+                    try {
+                        parentFrame.getContentPane().add(new StudentProfilePanel(parentFrame));
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(parentFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                    parentFrame.setVisible(true);
                 }
+                //if teacher is logged in
                 else if (session.getClass() == TeacherSession.class) {
                     String message = ContentBuilder
                                         .ChangeAddressResponse(Mapper
@@ -270,6 +284,17 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
                                                         .makeRequestCHANGETeacherAddress(session.getId(), CityField.getText(),
                                                                 StreetField.getText(), PostCodeField.getText())));
                     JOptionPane.showConfirmDialog(this, message);
+                    parentFrame.setEnabled(true);
+                    dispose();
+                    
+                    //refreshing main frame
+                    parentFrame.getContentPane().removeAll();
+                    try {
+                        parentFrame.getContentPane().add(new TeacherProfilePanel(parentFrame));
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(parentFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                    }
+                    parentFrame.setVisible(true);
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
@@ -283,7 +308,7 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

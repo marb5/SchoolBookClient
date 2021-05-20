@@ -16,7 +16,8 @@ public class ContentBuilder {
     }
     
     public static String StudentPersonalData(Map<String, String> map) {
-        String data = "Id: " + map.get("Id") + "\n";
+        String data = "";
+        data += "Id: " + map.get("Id") + "\n";
         data += "First name: " + map.get("First name") + "\n";
         data += "Last name: " + map.get("Last name") + "\n";
         data += "Birth date: " + map.get("Date") + "\n";
@@ -24,64 +25,81 @@ public class ContentBuilder {
         data += "City: " + map.get("City") + "\n";
         data += "Address: " + map.get("Street and number") + "\n";
         data += "Post code: " + map.get("Post code") + "\n";
-        
+
         return data;
     }
     
-    public static String StudentGrades(ArrayList<Map<String, String>> map) {
-        String data = "Your grades:\n";
-        for (int i = 0; i < map.size(); ++i) {
-            data += "Subject name: " + map.get(i).get("Subject name") + "\n";
-            data += "Grade: " + map.get(i).get("Grade") + "\n";
+    public static String StudentGrades(ArrayList<Map<String, String>> list) {
+        if (list != null) {
+            String data = "Your grades:\n";
+            for (int i = 0; i < list.size(); ++i) {
+                data += "Subject name: " + list.get(i).get("Subject name") + "\n";
+                data += "Grade: " + list.get(i).get("Grade") + "\n";
+            }
+
+            return data;
         }
-        
-        return data;
+        else
+            return "";
     }
     
     public static String StudentGradeFrom(Map<String, String> map) {
-        String data = "Your grades:\n";
-        data += "Subject name: " + map.get("Subject name") + "\n";
-        data += "Grade: " + map.get("Grade") + "\n";
-        
-        return data;
+        if (map != null) {
+            String data = "Your grades:\n";
+            data += "Subject name: " + map.get("Subject name") + "\n";
+            data += "Grade: " + map.get("Grade") + "\n";
+
+            return data;
+        }
+        else
+            return "";
     }
     
     public static String TeacherPersonalData(Map<String, String> map) {
-        String data = "Id: " + map.get("Id") + "\n";
+        String data = "";
+        data += "Id: " + map.get("Id") + "\n";
         data += "First name: " + map.get("First name") + "\n";
         data += "Last name: " + map.get("Last name") + "\n";
         data += "Birth date: " + map.get("Date") + "\n";
         data += "City: " + map.get("City") + "\n";
         data += "Address: " + map.get("Street and number") + "\n";
         data += "Post code: " + map.get("Post code") + "\n";
-        
+
         return data;
     }
     
-    public static String TeachersStudentsGrades(ArrayList<Map<String, String>> map) {
-        String data = "Your students grades:\n";
-        for (int i = 0; i < map.size(); ++i) {
-            data += "Subject name: " + map.get(i).get("Subject name") + "\n";
-            data += "Grade: " + map.get(i).get("Grade") + "\n";
-            data += "Student's id: " + map.get(i).get("StudentId") + "\n";
-            data += "Student's first name: " + map.get(i).get("Student firstName") + "\n";
-            data += "Student's last name: " + map.get(i).get("Student lastName") + "\n";
+    public static String TeachersStudentsGrades(ArrayList<Map<String, String>> list) {
+        if (list != null) {
+            String data = "Your students grades:\n";
+            for (int i = 0; i < list.size(); ++i) {
+                data += "Subject name: " + list.get(i).get("Subject name") + "\n";
+                data += "Grade: " + list.get(i).get("Grade") + "\n";
+                data += "Student's id: " + list.get(i).get("StudentId") + "\n";
+                data += "Student's first name: " + list.get(i).get("Student firstName") + "\n";
+                data += "Student's last name: " + list.get(i).get("Student lastName") + "\n";
+            }
+
+            return data;
         }
-        
-        return data;
+        else
+            return "";
     }
     
-    public static String TeachersStudentsGradesFrom(ArrayList<Map<String, String>> map) {
-        String data = "Your students grades:\n";
-        for (int i = 0; i < map.size(); ++i) {
-            data += "Subject name: " + map.get(i).get("Subject name") + "\n";
-            data += "Grade: " + map.get(i).get("Grade") + "\n";
-            data += "Student's id: " + map.get(i).get("StudentId") + "\n";
-            data += "Student's first name: " + map.get(i).get("Student firstName") + "\n";
-            data += "Student's last name: " + map.get(i).get("Student lastName") + "\n";
+    public static String TeachersStudentsGradesFrom(ArrayList<Map<String, String>> list) {
+        if (list != null) {
+            String data = "Your students grades:\n";
+            for (int i = 0; i < list.size(); ++i) {
+                data += "Subject name: " + list.get(i).get("Subject name") + "\n";
+                data += "Grade: " + list.get(i).get("Grade") + "\n";
+                data += "Student's id: " + list.get(i).get("StudentId") + "\n";
+                data += "Student's first name: " + list.get(i).get("Student firstName") + "\n";
+                data += "Student's last name: " + list.get(i).get("Student lastName") + "\n";
+            }
+
+            return data;
         }
-        
-        return data;
+        else
+            return "";
     }
     
     public static String AddGradeResponse(Map<String, String> map) {

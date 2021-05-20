@@ -135,7 +135,7 @@ public class TeacherFindGradesPanel extends javax.swing.JPanel {
     private void SubjectIdButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubjectIdButtonMouseClicked
         try {
             int subjectId = Integer.parseInt(SubjectIdField.getText());
-            jTextArea1.append(ContentBuilder
+            jTextArea1.setText(ContentBuilder
                                 .TeachersStudentsGradesFrom(Mapper
                                 .parseJSONlist(MainFrame.client
                                 .makeRequestGETTeachersStudentsGradesFrom(session.getId(), subjectId))));

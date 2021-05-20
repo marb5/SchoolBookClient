@@ -16,8 +16,8 @@ public class TeacherGradesPanel extends javax.swing.JPanel {
     public TeacherGradesPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
-        jTextArea1.append(ContentBuilder
-                                .StudentGrades(Mapper
+        jTextArea1.setText(ContentBuilder
+                                .TeachersStudentsGrades(Mapper
                                 .parseJSONlist(MainFrame.client
                                 .makeRequestGETTeachersAllStudentsGrades(session.getId()))));
     }

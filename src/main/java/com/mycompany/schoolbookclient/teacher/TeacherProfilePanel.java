@@ -6,9 +6,6 @@ import com.mycompany.schoolbookclient.data.ContentBuilder;
 import com.mycompany.schoolbookclient.data.Mapper;
 import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +17,7 @@ public class TeacherProfilePanel extends javax.swing.JPanel {
     public TeacherProfilePanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
-        PersonalData.append(ContentBuilder
+        PersonalData.setText(ContentBuilder
                                 .TeacherPersonalData(Mapper
                                 .parseJSON(MainFrame.client
                                 .makeRequestGETTeacherByID(session.getId()))));
@@ -87,16 +84,8 @@ public class TeacherProfilePanel extends javax.swing.JPanel {
     private void ChangeAddressButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeAddressButtonMouseClicked
         myFrame.setEnabled(false);
         new ChangeAddressFrame(myFrame, session).setVisible(true);
-        try {
-            PersonalData.append(ContentBuilder
-                    .StudentPersonalData(Mapper
-                            .parseJSON(MainFrame.client
-                                    .makeRequestGETStudentByID(session.getId()))));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_ChangeAddressButtonMouseClicked
-
+   
     private void ChangeAddressButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeAddressButtonMouseEntered
         ChangeAddressButton.setBackground(new java.awt.Color(92, 92, 92));
     }//GEN-LAST:event_ChangeAddressButtonMouseEntered
