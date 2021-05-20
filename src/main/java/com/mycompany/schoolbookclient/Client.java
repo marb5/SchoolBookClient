@@ -3,12 +3,8 @@ package com.mycompany.schoolbookclient;
 import com.mycompany.schoolbookclient.mainwindow.ConnectionErrorFrame;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.ConnectException;
 import java.net.Socket;
 /**
  *
@@ -52,6 +48,69 @@ public class Client extends Thread {
     
     public String makeRequestGETStudentByID(int id) throws IOException {
         String request = "STU;GET;" + String.valueOf(id);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestGETStudentByIDGrades(int id) throws IOException {
+        String request = "STU;GET;GRA;" + String.valueOf(id);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestGETStudentByIDGradesFrom(int myId, int subjectId) throws IOException {
+        String request = "STU;GET;" + String.valueOf(myId) + ";" + String.valueOf(subjectId);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestCHANGEStudentAddress(int myId, String city, String address, String postCode) throws IOException {
+        String request = "STU;CHA;" + String.valueOf(myId) + ";" + city + ";" + address + ";" + postCode;
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestGETTeacherByID(int id) throws IOException {
+        String request = "TEA;GET;" + String.valueOf(id);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestGETTeachersAllStudentsGrades(int id) throws IOException {
+        String request = "TEA;GET;GRA;" + String.valueOf(id);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestGETTeachersStudentsGradesFrom(int myId, int subjectId) throws IOException {
+        String request = "TEA;GET;" + String.valueOf(myId) + ";" + String.valueOf(subjectId);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestCHANGETeacherAddress(int myId, String city, String address, String postCode) throws IOException {
+        String request = "TEA;CHA;" + String.valueOf(myId) + ";" + city + ";" + address + ";" + postCode;
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestADDGrade(int myId, int studentId, int subjectId, int grade) throws IOException {
+        String request = "TEA;ADD;" + String.valueOf(myId) + ";" + String.valueOf(studentId) + ";"
+                                    + String.valueOf(subjectId) + ";" + String.valueOf(grade);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestCHANGEGrade(int myId, int studentId, int subjectId, int grade) throws IOException {
+        String request = "TEA;CHA;" + String.valueOf(myId) + ";" + String.valueOf(studentId) + ";"
+                                    + String.valueOf(subjectId) + ";" + String.valueOf(grade);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestADDGrade(int myId, int studentId, int subjectId) throws IOException {
+        String request = "TEA;DEL;" + String.valueOf(myId) + ";" + String.valueOf(studentId) + ";"
+                                    + String.valueOf(subjectId);
         clientPrintOut.println(request);
         return buffer.readLine();
     }
