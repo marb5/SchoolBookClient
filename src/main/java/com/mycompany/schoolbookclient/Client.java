@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
 /**
  *
  * @author marcin
@@ -111,6 +114,24 @@ public class Client extends Thread {
     public String makeRequestDELETEGrade(int myId, int studentId, int subjectId) throws IOException {
         String request = "TEA;DEL;" + String.valueOf(myId) + ";" + String.valueOf(studentId) + ";"
                                     + String.valueOf(subjectId);
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestLOG_INStudent(int id, String pass) throws NoSuchAlgorithmException, IOException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        md5.update(pass.getBytes());
+        String passMD5 = DatatypeConverter.printHexBinary(md5.digest());
+        String request = "STU;LOG;" + String.valueOf(id) + ";" + passMD5 + ";";
+        clientPrintOut.println(request);
+        return buffer.readLine();
+    }
+    
+    public String makeRequestLOG_INTeacher(int id, String pass) throws NoSuchAlgorithmException, IOException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        md5.update(pass.getBytes());
+        String passMD5 = DatatypeConverter.printHexBinary(md5.digest());
+        String request = "TEA;LOG;" + String.valueOf(id) + ";" + passMD5 + ";";
         clientPrintOut.println(request);
         return buffer.readLine();
     }

@@ -1,11 +1,16 @@
 package com.mycompany.schoolbookclient.mainwindow;
 
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
 import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
 import com.mycompany.schoolbookclient.session.StudentSession;
 import com.mycompany.schoolbookclient.session.TeacherSession;
 import com.mycompany.schoolbookclient.student.StudentPanel;
 import com.mycompany.schoolbookclient.teacher.TeacherPanel;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -171,33 +176,43 @@ public class LoggingPanel extends javax.swing.JPanel {
 
     private void LogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseClicked
         if (LoginField.getText().charAt(0) == 's') {
-            myFrame.session = new StudentSession(LoginField.getText());
-            if(session.isRunning()) {
-                myFrame.getContentPane().removeAll();
-                try {
+            try {
+                myFrame.session = new StudentSession(LoginField.getText(), PasswordField.getText());
+                
+                if(session.isRunning()) {
+                    myFrame.getContentPane().removeAll();
+                    JOptionPane.showConfirmDialog(this, "Logged in correctly!");
                     myFrame.getContentPane().add(new StudentPanel(myFrame));
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                    myFrame.setVisible(true);
                 }
-                myFrame.setVisible(true);
-            }
-            else {
-                JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);
+                else {
+                    JOptionPane.showMessageDialog(myFrame, "Please enter correct login and password!", "Incorrect login or password!", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            } catch (NoSuchAlgorithmException ex) {
+                JOptionPane.showMessageDialog(myFrame, "Problem with logging in!", "Logging in error!", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
             }
         }
         else if (LoginField.getText().charAt(0) == 't') {
-            myFrame.session = new TeacherSession(LoginField.getText());
-            if(session.isRunning()) {
-                myFrame.getContentPane().removeAll();
-                try {
+            try {
+                myFrame.session = new TeacherSession(LoginField.getText(), PasswordField.getText());
+                
+                if(session.isRunning()) {
+                    myFrame.getContentPane().removeAll();
+                    JOptionPane.showConfirmDialog(this, "Logged in correctly!");
                     myFrame.getContentPane().add(new TeacherPanel(myFrame));
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                    myFrame.setVisible(true);
                 }
-                myFrame.setVisible(true);
-            }
-            else {
-                JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);
+                else {
+                    JOptionPane.showMessageDialog(myFrame, "Please enter correct login and password!", "Incorrect login or password!", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            } catch (NoSuchAlgorithmException ex) {
+                JOptionPane.showMessageDialog(myFrame, "Problem with logging in!", "Logging in error!", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
             }
         }
         else {

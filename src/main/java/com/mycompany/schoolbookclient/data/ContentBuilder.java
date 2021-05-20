@@ -122,4 +122,11 @@ public class ContentBuilder {
         else
             return "Problem while deleting grade\n";
     }
+    
+    public static boolean LogInResponse(Map<String, String> map) {
+        if (map.get("Success").equals("1"))
+            return true;
+        else
+            return false;
+    }
 }
