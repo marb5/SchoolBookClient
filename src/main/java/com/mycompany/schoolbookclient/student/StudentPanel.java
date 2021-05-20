@@ -5,6 +5,7 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,20 +169,28 @@ public class StudentPanel extends javax.swing.JPanel {
         try {
             myFrame.getContentPane().add(new StudentProfilePanel(myFrame));
         } catch (IOException ex) {
-            Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
         }
         myFrame.setVisible(true);
     }//GEN-LAST:event_ProfileMouseClicked
 
     private void MyGradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MyGradesMouseClicked
         myFrame.getContentPane().removeAll();
-        myFrame.getContentPane().add(new StudentGradesPanel(myFrame));
+        try {
+            myFrame.getContentPane().add(new StudentGradesPanel(myFrame));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
         myFrame.setVisible(true);
     }//GEN-LAST:event_MyGradesMouseClicked
 
     private void SearchForGradeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchForGradeMouseClicked
         myFrame.getContentPane().removeAll();
-        myFrame.getContentPane().add(new StudentGradeFromPanel(myFrame));
+        try {
+            myFrame.getContentPane().add(new StudentGradeFromPanel(myFrame));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
         myFrame.setVisible(true);
     }//GEN-LAST:event_SearchForGradeMouseClicked
 

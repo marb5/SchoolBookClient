@@ -2,13 +2,10 @@ package com.mycompany.schoolbookclient.mainwindow;
 
 import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
 import com.mycompany.schoolbookclient.session.StudentSession;
+import com.mycompany.schoolbookclient.session.TeacherSession;
 import com.mycompany.schoolbookclient.student.StudentPanel;
 import com.mycompany.schoolbookclient.teacher.TeacherPanel;
-import java.awt.Color;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -180,7 +177,7 @@ public class LoggingPanel extends javax.swing.JPanel {
                 try {
                     myFrame.getContentPane().add(new StudentPanel(myFrame));
                 } catch (IOException ex) {
-                    Logger.getLogger(LoggingPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
                 }
                 myFrame.setVisible(true);
             }
@@ -189,9 +186,19 @@ public class LoggingPanel extends javax.swing.JPanel {
             }
         }
         else if (LoginField.getText().charAt(0) == 't') {
-            myFrame.getContentPane().removeAll();
-            myFrame.getContentPane().add(new TeacherPanel(myFrame));
-            myFrame.setVisible(true);
+            myFrame.session = new TeacherSession(LoginField.getText());
+            if(session.isRunning()) {
+                myFrame.getContentPane().removeAll();
+                try {
+                    myFrame.getContentPane().add(new TeacherPanel(myFrame));
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+                }
+                myFrame.setVisible(true);
+            }
+            else {
+                JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else {
             JOptionPane.showMessageDialog(myFrame, "Please enter correct login!", "Incorrect login!", JOptionPane.ERROR_MESSAGE);

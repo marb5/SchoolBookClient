@@ -4,7 +4,7 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
 import com.mycompany.schoolbookclient.data.ContentBuilder;
 import com.mycompany.schoolbookclient.data.Mapper;
-import com.mycompany.schoolbookclient.session.StudentSession;
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
 import java.io.IOException;
 
 /**
@@ -20,7 +20,7 @@ public class StudentProfilePanel extends javax.swing.JPanel {
         PersonalData.append(ContentBuilder
                                 .StudentPersonalData(Mapper
                                 .parseJSON(MainFrame.client
-                                .makeRequestGETStudentByID(StudentSession.getId()))));
+                                .makeRequestGETStudentByID(session.getId()))));
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +90,7 @@ public class StudentProfilePanel extends javax.swing.JPanel {
 
     private void ChangeAddressButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeAddressButtonMouseClicked
         myFrame.setEnabled(false);
-        new ChangeAddressFrame(myFrame).setVisible(true);
+        new ChangeAddressFrame(myFrame, session).setVisible(true);
     }//GEN-LAST:event_ChangeAddressButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

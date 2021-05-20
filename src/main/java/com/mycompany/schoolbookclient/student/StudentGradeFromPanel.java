@@ -1,6 +1,11 @@
 package com.mycompany.schoolbookclient.student;
 
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,7 +14,7 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 public class StudentGradeFromPanel extends javax.swing.JPanel {
     MainFrame myFrame;
 
-    public StudentGradeFromPanel(MainFrame myFrame) {
+    public StudentGradeFromPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
     }
@@ -32,7 +37,6 @@ public class StudentGradeFromPanel extends javax.swing.JPanel {
         jTextArea1.setColumns(20);
         jTextArea1.setForeground(new java.awt.Color(190, 190, 190));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Your grade from subject");
         jTextArea1.setFocusable(false);
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jTextArea1.setRequestFocusEnabled(false);
@@ -66,6 +70,9 @@ public class StudentGradeFromPanel extends javax.swing.JPanel {
         SubjectIdButton.setFocusable(false);
         SubjectIdButton.setPreferredSize(new java.awt.Dimension(120, 25));
         SubjectIdButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SubjectIdButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 SubjectIdButtonMouseEntered(evt);
             }
@@ -123,6 +130,21 @@ public class StudentGradeFromPanel extends javax.swing.JPanel {
     private void SubjectIdButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubjectIdButtonMouseExited
         SubjectIdButton.setBackground(new java.awt.Color(51, 51, 51));
     }//GEN-LAST:event_SubjectIdButtonMouseExited
+
+    private void SubjectIdButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubjectIdButtonMouseClicked
+        try {
+            int subjectId = Integer.parseInt(SubjectIdField.getText());
+            jTextArea1.append(ContentBuilder
+                                .StudentGradeFrom(Mapper
+                                .parseJSON(MainFrame.client
+                                .makeRequestGETStudentByIDGradesFrom(session.getId(), subjectId))));
+        }
+        catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(myFrame, "Please enter correct subject ID!", "Incorrect ID!", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_SubjectIdButtonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

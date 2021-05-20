@@ -1,6 +1,10 @@
 package com.mycompany.schoolbookclient.student;
 
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
+import java.io.IOException;
 
 /**
  *
@@ -9,9 +13,13 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 public class StudentGradesPanel extends javax.swing.JPanel {
     MainFrame myFrame;
 
-    public StudentGradesPanel(MainFrame myFrame) {
+    public StudentGradesPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
+        jTextArea1.append(ContentBuilder
+                                .StudentGrades(Mapper
+                                .parseJSONlist(MainFrame.client
+                                .makeRequestGETStudentByIDGrades(session.getId()))));
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +37,6 @@ public class StudentGradesPanel extends javax.swing.JPanel {
         jTextArea1.setColumns(20);
         jTextArea1.setForeground(new java.awt.Color(190, 190, 190));
         jTextArea1.setRows(10);
-        jTextArea1.setText("Your grades:");
         jTextArea1.setFocusable(false);
         jTextArea1.setMargin(new java.awt.Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jTextArea1);

@@ -1,6 +1,15 @@
 package com.mycompany.schoolbookclient.address;
 
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
+import com.mycompany.schoolbookclient.session.Session;
+import com.mycompany.schoolbookclient.session.StudentSession;
+import com.mycompany.schoolbookclient.session.TeacherSession;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -8,9 +17,11 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
  */
 public class ChangeAddressFrame extends javax.swing.JFrame {
     static MainFrame parentFrame;
+    static Session session;
     
-    public ChangeAddressFrame(MainFrame parentFrame) {
+    public ChangeAddressFrame(MainFrame parentFrame, Session session) {
         this.parentFrame = parentFrame;
+        this.session = session;
         initComponents();
     }
 
@@ -117,6 +128,9 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
         ChangeButton.setFocusable(false);
         ChangeButton.setPreferredSize(new java.awt.Dimension(140, 25));
         ChangeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeButtonMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ChangeButtonMouseEntered(evt);
             }
@@ -237,6 +251,33 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_CloseButtonMouseClicked
 
+    private void ChangeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeButtonMouseClicked
+        if (!CityField.getText().isEmpty() && !StreetField.getText().isEmpty() && 
+                !PostCodeField.getText().isEmpty() && PostCodeField.getText().length() <= 6) {
+            try {
+                if (session.getClass() == StudentSession.class) {
+                    String message = ContentBuilder
+                                        .ChangeAddressResponse(Mapper
+                                                .parseJSON(MainFrame.client
+                                                        .makeRequestCHANGEStudentAddress(session.getId(), CityField.getText(),
+                                                                StreetField.getText(), PostCodeField.getText())));
+                }
+                else if (session.getClass() == TeacherSession.class) {
+                    String message = ContentBuilder
+                                        .ChangeAddressResponse(Mapper
+                                                .parseJSON(MainFrame.client
+                                                        .makeRequestCHANGETeacherAddress(session.getId(), CityField.getText(),
+                                                                StreetField.getText(), PostCodeField.getText())));
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter data!", "Incorrect data!", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_ChangeButtonMouseClicked
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -258,7 +299,7 @@ public class ChangeAddressFrame extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangeAddressFrame(parentFrame).setVisible(true);
+                new ChangeAddressFrame(parentFrame, session).setVisible(true);
             }
         });
     }

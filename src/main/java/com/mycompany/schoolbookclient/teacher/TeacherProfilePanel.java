@@ -2,6 +2,10 @@ package com.mycompany.schoolbookclient.teacher;
 
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
+import com.mycompany.schoolbookclient.data.ContentBuilder;
+import com.mycompany.schoolbookclient.data.Mapper;
+import static com.mycompany.schoolbookclient.mainwindow.MainFrame.session;
+import java.io.IOException;
 
 /**
  *
@@ -10,9 +14,13 @@ import com.mycompany.schoolbookclient.address.ChangeAddressFrame;
 public class TeacherProfilePanel extends javax.swing.JPanel {
     MainFrame myFrame;
     
-    public TeacherProfilePanel(MainFrame myFrame) {
+    public TeacherProfilePanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
+        PersonalData.append(ContentBuilder
+                                .TeacherPersonalData(Mapper
+                                .parseJSON(MainFrame.client
+                                .makeRequestGETTeacherByID(session.getId()))));
     }
 
     @SuppressWarnings("unchecked")
@@ -31,7 +39,6 @@ public class TeacherProfilePanel extends javax.swing.JPanel {
         PersonalData.setColumns(120);
         PersonalData.setForeground(new java.awt.Color(190, 190, 190));
         PersonalData.setRows(7);
-        PersonalData.setText("Id: \nFirst name: \nLast_name: \nBirth_date: \nCity:\nAddress:\nPost code:");
         PersonalData.setFocusable(false);
         PersonalData.setMargin(new java.awt.Insets(5, 5, 5, 5));
 
@@ -76,7 +83,7 @@ public class TeacherProfilePanel extends javax.swing.JPanel {
 
     private void ChangeAddressButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeAddressButtonMouseClicked
         myFrame.setEnabled(false);
-        new ChangeAddressFrame(myFrame).setVisible(true);
+        new ChangeAddressFrame(myFrame, session).setVisible(true);
     }//GEN-LAST:event_ChangeAddressButtonMouseClicked
 
     private void ChangeAddressButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeAddressButtonMouseEntered

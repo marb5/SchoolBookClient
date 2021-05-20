@@ -2,6 +2,8 @@ package com.mycompany.schoolbookclient.teacher;
 
 import com.mycompany.schoolbookclient.mainwindow.LoggingPanel;
 import com.mycompany.schoolbookclient.mainwindow.MainFrame;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,7 +12,7 @@ import com.mycompany.schoolbookclient.mainwindow.MainFrame;
 public class TeacherPanel extends javax.swing.JPanel {
     MainFrame myFrame;
 
-    public TeacherPanel(MainFrame myFrame) {
+    public TeacherPanel(MainFrame myFrame) throws IOException {
         this.myFrame = myFrame;
         initComponents();
         initMenu();
@@ -143,7 +145,11 @@ public class TeacherPanel extends javax.swing.JPanel {
 
     private void ProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProfileMouseClicked
         myFrame.getContentPane().removeAll();
-        myFrame.getContentPane().add(new TeacherProfilePanel(myFrame));
+        try {
+            myFrame.getContentPane().add(new TeacherProfilePanel(myFrame));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
         myFrame.setVisible(true);
     }//GEN-LAST:event_ProfileMouseClicked
 
@@ -157,7 +163,11 @@ public class TeacherPanel extends javax.swing.JPanel {
 
     private void GradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GradesMouseClicked
         myFrame.getContentPane().removeAll();
-        myFrame.getContentPane().add(new TeacherGradesPanel(myFrame));
+        try {
+            myFrame.getContentPane().add(new TeacherGradesPanel(myFrame));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(myFrame, "Problem with request!", "Server request error!", JOptionPane.ERROR_MESSAGE);
+        }
         myFrame.setVisible(true);
     }//GEN-LAST:event_GradesMouseClicked
 
