@@ -11,6 +11,7 @@ import java.net.ConnectException;
  */
 public class App {//implements Runnable {
     
+    //runs application
     public static void main(String[] args) throws ConnectException, IOException {
         Client client = new Client();
         if (client.isConnectedSuccesfully()) {

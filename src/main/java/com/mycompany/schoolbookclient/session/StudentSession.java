@@ -14,6 +14,7 @@ import java.security.NoSuchAlgorithmException;
 public class StudentSession extends Session {
     public StudentSession(String login, String pass) throws NoSuchAlgorithmException, IOException {
         super(login);
+        //logging in
         running = ContentBuilder
                             .LogInResponse(Mapper
                                     .parseJSON(MainFrame.client

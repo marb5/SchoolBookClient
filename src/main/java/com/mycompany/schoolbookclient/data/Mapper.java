@@ -10,6 +10,7 @@ import org.json.simple.JSONValue;
  *
  * @author marcin
  */
+//parses json from server to readable data
 public class Mapper {
     public static Map<String, String> parseJSON(String jsonStr) {
         if (jsonStr.equals("{\"Error\":\"Problem with server!\"}")) {

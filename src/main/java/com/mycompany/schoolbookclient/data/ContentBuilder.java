@@ -7,6 +7,7 @@ import java.util.Map;
  *
  * @author marcin
  */
+//builds content to display
 public class ContentBuilder {
     public static String ChangeAddressResponse(Map<String, String> map) {
         if (map.get("Success") == "1")

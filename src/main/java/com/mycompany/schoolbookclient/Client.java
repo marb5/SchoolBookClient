@@ -13,6 +13,7 @@ import javax.xml.bind.DatatypeConverter;
  *
  * @author marcin
  */
+//makes connection with database, processes requests and responses
 public class Client extends Thread {
     private GetPropertyValues properties;
     private String serverHost;

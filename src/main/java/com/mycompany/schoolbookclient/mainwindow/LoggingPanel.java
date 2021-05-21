@@ -175,6 +175,7 @@ public class LoggingPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_ExitButtonMouseExited
 
     private void LogInButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogInButtonMouseClicked
+        //reads login and password, if they are correct than starts session and directs to relevant user type
         if (LoginField.getText().charAt(0) == 's') {
             try {
                 myFrame.session = new StudentSession(LoginField.getText(), PasswordField.getText());

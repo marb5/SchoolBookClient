@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author marcin
  */
+//informs about session
 public class Session {
     protected boolean running;
     protected static int id;

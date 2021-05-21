@@ -9,6 +9,7 @@ import java.util.Properties;
  *
  * @author marcin
  */
+//reads host address and port from configuration file
 public class GetPropertyValues {
     private InputStream inputStream;
     private String host;
