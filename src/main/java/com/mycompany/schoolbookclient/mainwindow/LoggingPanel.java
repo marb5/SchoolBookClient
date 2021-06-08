@@ -163,6 +163,7 @@ public class LoggingPanel extends javax.swing.JPanel {
 
     private void ExitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitButtonMouseClicked
         myFrame.dispose();
+        MainFrame.client.makeRequestExitConnection();
         System.exit(0);
     }//GEN-LAST:event_ExitButtonMouseClicked
 

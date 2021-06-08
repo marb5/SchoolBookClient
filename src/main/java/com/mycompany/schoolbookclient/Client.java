@@ -136,4 +136,8 @@ public class Client extends Thread {
         clientPrintOut.println(request);
         return buffer.readLine();
     }
+    
+    public void makeRequestExitConnection() {
+        clientPrintOut.println("END;");
+    }
 }
